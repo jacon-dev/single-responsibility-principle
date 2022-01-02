@@ -4,56 +4,56 @@ namespace SingleResponsibility
 {
     public class BugLifeCycle
     {
-        private Bug _bug;
+        public Bug Bug { get; private set; }
 
         public void CustomerReportsTheBug()
         {
-            _bug = new Bug("Single Responsibility Principle Bug");
+            Bug = new Bug("Single Responsibility Principle Bug");
         }
 
         public void ProductPlansTheWork()
         {
-            if (_bug != null && string.IsNullOrEmpty(_bug.Name) == false)
+            if (Bug != null && string.IsNullOrEmpty(Bug.Name) == false)
             {
-                _bug.TestHours = 4;
-                _bug.DevelopmentHours = 6;
-                _bug.IsPlanned = true;
+                Bug.TestHours = 4;
+                Bug.DevelopmentHours = 6;
+                Bug.IsPlanned = true;
             }
         }
 
         public void DeveloperFixesTheBug()
         {
-            if (_bug != null && _bug.IsPlanned)
+            if (Bug != null && Bug.IsPlanned)
             {
                 Console.WriteLine("Doing some coding...");
-                _bug.IsDeveloped = true;
+                Bug.IsDeveloped = true;
             }
         }
 
         public void TesterDoesTheTesting()
         {
-            if (_bug != null && _bug.IsDeveloped)
+            if (Bug != null && Bug.IsDeveloped)
             {
                 Console.WriteLine("Doing some testing...");
-                _bug.IsTested = true;
+                Bug.IsTested = true;
             }
         }
 
         public void ApproveTheBug()
         {
-            if (_bug != null && _bug.IsDeveloped && _bug.IsTested)
+            if (Bug != null && Bug.IsDeveloped && Bug.IsTested)
             {
-                _bug.Approver = "JC#";
-                _bug.IsApproved = true;
+                Bug.Approver = "JC#";
+                Bug.IsApproved = true;
             }
         }
 
         public void ReleaseTheFix()
         {
-            if (_bug != null && _bug.IsApproved)
+            if (Bug != null && Bug.IsApproved)
             {
-                Console.WriteLine($"Releasing the fix for bug {_bug.Name} approved by {_bug.Approver}");
-                _bug.IsReleased = true;
+                Console.WriteLine($"Releasing the fix for bug {Bug.Name} approved by {Bug.Approver}");
+                Bug.IsReleased = true;
             }
         }
     }
