@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
+using SingleResponsibility.Classes;
 
-namespace SingleResponsibility
+namespace SingleResponsibility.Tests
 {
     [TestFixture]
     public class BugLifecycleTests

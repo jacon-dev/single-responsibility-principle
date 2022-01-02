@@ -1,6 +1,7 @@
 ﻿using System;
+using SingleResponsibility.Models;
 
-namespace SingleResponsibility
+namespace SingleResponsibility.Classes
 {
     public class BugLifeCycle
     {

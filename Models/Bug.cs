@@ -1,4 +1,4 @@
-﻿namespace SingleResponsibility
+﻿namespace SingleResponsibility.Models
 {
     public class Bug
     {
