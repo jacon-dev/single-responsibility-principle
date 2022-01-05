@@ -39,23 +39,5 @@ namespace SingleResponsibility.Classes
                 Bug.IsTested = true;
             }
         }
-
-        public void ApproveTheBug()
-        {
-            if (Bug != null && Bug.IsDeveloped && Bug.IsTested)
-            {
-                Bug.Approver = "JC#";
-                Bug.IsApproved = true;
-            }
-        }
-
-        public void ReleaseTheFix()
-        {
-            if (Bug != null && Bug.IsApproved)
-            {
-                Console.WriteLine($"Releasing the fix for bug {Bug.Name} approved by {Bug.Approver}");
-                Bug.IsReleased = true;
-            }
-        }
     }
 }

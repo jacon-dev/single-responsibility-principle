@@ -84,50 +84,13 @@ namespace SingleResponsibility.Tests
         }
 
         [Test]
-        [TestCase("Development")]
-        [TestCase("Testing")]
-        public void TestThatBugCannotBeApprovedWithoutEitherDevelopmentOrTesting(string activity)
-        {
-            _sut.CustomerReportsTheBug();
-            _sut.ProductPlansTheWork();
-
-            switch (activity)
-            {
-                case "Development" : _sut.DeveloperFixesTheBug();
-                    break;
-                case "Testing" : _sut.TesterDoesTheTesting();
-                    break;
-            }
-            
-            Assert.IsFalse(_sut.Bug.IsApproved);
-        }
-
-        [Test]
-        public void TestThatBugIsApproved()
-        {
-            _sut.CustomerReportsTheBug();
-            _sut.ProductPlansTheWork();
-            _sut.DeveloperFixesTheBug();
-            _sut.TesterDoesTheTesting();
-            _sut.ApproveTheBug();
-
-            Assert.AreEqual(ExpectedApprover, _sut.Bug.Approver);
-            Assert.IsTrue(_sut.Bug.IsApproved);
-        }
-
-        [Test]
         public void TestThatEverythingWorksEndToEndAndBugIsReleased()
         {
             _sut.CustomerReportsTheBug();
             _sut.ProductPlansTheWork();
             _sut.DeveloperFixesTheBug();
             _sut.TesterDoesTheTesting();
-            _sut.ApproveTheBug();
-            _sut.ReleaseTheFix();
             
-            Assert.IsTrue(_sut.Bug.IsReleased);
-            Assert.AreEqual(ExpectedApprover, _sut.Bug.Approver);
-            Assert.IsTrue(_sut.Bug.IsApproved);
             Assert.IsTrue(_sut.Bug.IsTested);
             Assert.IsTrue(_sut.Bug.IsDeveloped);
             Assert.IsTrue(_sut.Bug.IsPlanned);
